@@ -1,26 +1,27 @@
-from ast import alias
-from re import M
-from turtle import title
 from django.test import TestCase
 from wanted_api.models import Person, Aliases
 
 # Create your tests here.
 
-
-class PeopleTestCase(TestCase):
+class PersonTest(TestCase):
     def setUp(self):
-        test_person = Person.objects.create(title="test",
-            url="https://www.zenonscraper.com",
+        test_person = Person.objects.create(
+            title="test",
+            url="https://www.google.com",
             reward=0,
             race="blue",
             nationality="globe",
             details="This is a test case testing the functionality of the model.",
-            height=5,
-            weight=3,
-            age=12,
+            height_min=5,
+            height_max=6,
+            weight_min=3,
+            weight_max=4,
+            age_min=12,
+            age_max=13,
             hair_color="green",
             eye_color="gray",
-            description="An empty text string"
+            description="An empty text string",
+            caution="sadfhskdjfh",
         )
         test_person.save()
         
@@ -32,18 +33,19 @@ class PeopleTestCase(TestCase):
             person=test_person,
             alias="The Second"
         )
-
         test_alias1.save()
         test_alias2.save()
 
     def test_get_person(self):
+        person = Person.objects.get(race="blue")
         self.assertEqual(person.race, "blue")
-        self.assertEqual(person.height, 5)
+        self.assertEqual(person.height_min, 5)
 
     def test_get_aliases(self):
         person = Person.objects.get(race="blue")
-        aliases = Aliases(person=person)
-        self.assertEqual(aliases[0], "The One")
-        self.assertEqual(aliases[1], "The Second")
+        aliases = Aliases.objects.filter(person=person)
+        self.assertEqual(aliases[0].alias, "The One")
+        self.assertEqual(aliases[1].alias, "The Second")
 
 
+    
