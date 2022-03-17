@@ -1,5 +1,5 @@
 from django.test import TestCase
-from wanted_api.models import Person, Aliases
+from wanted_api.models import Person, Alias
 
 # Create your tests here.
 
@@ -25,11 +25,11 @@ class PersonTest(TestCase):
         )
         test_person.save()
         
-        test_alias1 = Aliases.objects.create(
+        test_alias1 = Alias.objects.create(
             person=test_person,
             alias="The One"
         )
-        test_alias2 = Aliases.objects.create(
+        test_alias2 = Alias.objects.create(
             person=test_person,
             alias="The Second"
         )
@@ -43,9 +43,9 @@ class PersonTest(TestCase):
 
     def test_get_aliases(self):
         person = Person.objects.get(race="blue")
-        aliases = Aliases.objects.filter(person=person)
+        aliases = Alias.objects.filter(person=person)
         self.assertEqual(aliases[0].alias, "The One")
         self.assertEqual(aliases[1].alias, "The Second")
 
 
-    
+
