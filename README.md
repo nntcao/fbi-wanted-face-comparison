@@ -1,8 +1,8 @@
-# FBI Wanted Face Comparison API
+# FBI Wanted Face Comparison Application
 An API to compare faces to the FBI's Most Wanted Criminals. "Finds your wanted doppelganger."
 
 Originally intended to be the internal API server responsible for ML calculations. 
-However, processing power required is beyond the scope of my hardware and the accuracy of the results was limited (there are maybe only ~500 wanted criminals in total.)
+However, processing power required is beyond the scope of my hardware and the accuracy of the results was limited (there are maybe only ~500 wanted criminals in total. The likelihood you find someone that looks similar to you is slim.)
 
 # How to use
 Make sure Python 3.9 is installed, and install all the packages in requirements.txt.
